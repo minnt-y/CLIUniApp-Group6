@@ -2,11 +2,11 @@ import random
 
 
 class Subject:
-    def __init__(self, subject_id: str = None, mark: int = None):
-        if subject_id is None:
-            self._subject_id = self.generateSubjectID()
+    def __init__(self, subjectID: str = None, mark: int = None):
+        if subjectID is None:
+            self._subjectID = self.generateSubjectID()
         else:
-            self._subject_id = subject_id
+            self._subjectID = subjectID
 
         if mark is None:
             self._mark = self.generateRandomMark()
@@ -34,7 +34,7 @@ class Subject:
             return "Z"
 
     def getSubjectID(self) -> str:
-        return self._subject_id
+        return self._subjectID
 
     def getMark(self) -> int:
         return self._mark
@@ -43,4 +43,4 @@ class Subject:
         return self._grade
 
     def __str__(self) -> str:
-        return f"Subject ID: {self._subject_id} -- Mark = {self._mark} -- Grade = {self._grade}"
+        return f"Subject ID: {self._subjectID} -- Mark = {self._mark} -- Grade = {self._grade}"
