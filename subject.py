@@ -1,6 +1,6 @@
 import random
 
-usedIDs = set()
+usedSubjectIDs = set()
 
 
 class Subject:
@@ -21,11 +21,9 @@ class Subject:
         while True:
             subjectID = f"{random.randint(1, 999):03d}"
 
-            if subjectID not in usedIDs:
-                usedIDs.add(subjectID)
+            if subjectID not in usedSubjectIDs:
+                usedSubjectIDs.add(subjectID)
                 return subjectID
-
-        return f"{random.randint(1, 999):03d}"
 
     def generateRandomMark(self) -> int:
         return random.randint(25, 100)
