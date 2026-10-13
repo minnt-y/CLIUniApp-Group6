@@ -132,7 +132,7 @@ class StudentManager:
 
         return result
 
-    def deleteStudent(self, studentID: str) -> bool:
+    def removeStudent(self, studentID: str) -> bool:
         for student in self.students:
             if student.getStudentID() == studentID:
                 self.students.remove(student)
