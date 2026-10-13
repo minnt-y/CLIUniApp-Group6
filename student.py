@@ -1,5 +1,7 @@
 import random
 
+usedStudentIDs = set()
+
 
 class Student:
     def __init__(
@@ -20,8 +22,13 @@ class Student:
         self._enrolledSubjects = []
 
     def generateStudentID(self) -> str:
-        num = random.randint(1, 999999)
-        return f"{num:06d}"
+        while True:
+            num = random.randint(1, 999999)
+            studentID = f"{num:06d}"
+
+            if studentID not in usedStudentIDs:
+                usedStudentIDs.add(studentID)
+                return studentID
 
     def getStudentID(self) -> str:
         return self._studentID
@@ -33,14 +40,14 @@ class Student:
         self._password = new_password
 
     def viewEnrolmentList(self) -> list:
-        return self._enrolledSubjects
+        return self._enrolledSubjects.copy()
 
     def enrolSubject(self, subject) -> bool:
         if len(self._enrolledSubjects) >= 4:
             return False
-        else:
-            self._enrolledSubjects.append(subject)
-            return True
+
+        self._enrolledSubjects.append(subject)
+        return True
 
     def removeSubject(self, subjectID: str) -> bool:
         for subject in self._enrolledSubjects:
