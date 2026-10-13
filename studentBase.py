@@ -3,7 +3,7 @@ import pickle
 
 
 class StudentBase:
-    FILE_NAME = "student.data"
+    FILE_NAME = "students.data"
 
     @staticmethod
     def saveStudentData(students: list) -> None:
@@ -20,6 +20,6 @@ class StudentBase:
                 if os.path.getsize(StudentBase.FILE_NAME) == 0:
                     return []
                 return pickle.load(file)
-            return pickle.load(file)
+
         except (EOFError, pickle.UnpicklingError):
             return []
