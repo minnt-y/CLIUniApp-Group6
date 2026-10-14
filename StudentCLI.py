@@ -29,7 +29,7 @@ def student_subsystem(manager: StudentManager):
 
             student = manager.loginStudent(student_id, password)
             if student:
-                print(f"\nWelcome back, {student.getName()}!")
+                print(f"\nWelcome back, {student.getStudentID()}!")
                 student_logged_in_menu(manager, student)
             else:
                 print("\nInvalid Student ID or Password.")
@@ -82,7 +82,7 @@ def student_logged_in_menu(manager: StudentManager, student):
                 print("Enrolment list is empty.")
             else:
                 for subject in enrolled:
-                    print(f"  -> {subject}")
+                    print(f"{subject}")
 
         elif choice == "4":
             print("\n--- Change Password ---")

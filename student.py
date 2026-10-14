@@ -30,6 +30,9 @@ class Student:
                 usedStudentIDs.add(studentID)
                 return studentID
 
+    def getName(self) -> str:
+        return self._name
+
     def getStudentID(self) -> str:
         return self._studentID
 
@@ -55,6 +58,13 @@ class Student:
                 self._enrolledSubjects.remove(subject)
                 return True
         return False
+
+    def getAverageMark(self) -> float:
+        enrolled = self.viewEnrolmentList()
+        if not enrolled:
+            return "No enrolled subjects"
+        total_mark = sum(sub.getMark() for sub in enrolled)
+        return total_mark / len(enrolled)
 
     def __str__(self) -> str:
         return f"Name: {self._name} -- Student ID: {self._studentID} -- Email: {self._email}"

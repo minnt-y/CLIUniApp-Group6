@@ -9,6 +9,8 @@ class StudentManager:
         self.students = StudentBase.loadStudentData()
         for student in self.students:
             usedStudentIDs.add(student.getStudentID())
+            for sub in student.viewEnrolmentList():
+                usedSubjectIDs.add(sub.getSubjectID())
 
     def saveData(self) -> None:
         StudentBase.saveStudentData(self.students)
@@ -19,19 +21,20 @@ class StudentManager:
         return True
 
     def validatePassword(self, password: str) -> bool:
-        if not password or len(password) < 8:
+        if not password:
             return False
 
         if not password[0].isupper():
             return False
 
-        letters = password[:5]
-        numbers = password[5:]
-
-        if not letters.isalpha() or not numbers.isdigit():
+        letter_count = sum(1 for c in password if c.isalpha())
+        if letter_count < 5:
             return False
 
-        if len(numbers) < 3:
+        import re
+
+        match = re.search(r"(\d+)$", password)
+        if not match or len(match.group(1)) < 3:
             return False
 
         return True
@@ -114,9 +117,24 @@ class StudentManager:
         grades = {"HD": [], "D": [], "C": [], "P": [], "Z": []}
 
         for student in self.students:
-            for subject in student.viewEnrolmentList():
-                grade = subject.getGrade()
-                grades[grade].append(student)
+            avg_mark = student.getAverageMark()
+            if isinstance(avg_mark, str):
+                continue
+
+            avg_mark = student.getAverageMark()
+
+            if avg_mark >= 85:
+                grade = "HD"
+            elif avg_mark >= 75:
+                grade = "D"
+            elif avg_mark >= 65:
+                grade = "C"
+            elif avg_mark >= 50:
+                grade = "P"
+            else:
+                grade = "Z"
+
+            grades[grade].append((student, avg_mark))
 
         return grades
 
@@ -124,10 +142,19 @@ class StudentManager:
         result = {"PASS": [], "FAIL": []}
 
         for student in self.students:
-            for subject in student.viewEnrolmentList():
-                if subject.getMark() >= 50:
+            enrolled = student.viewEnrolmentList()
+            if not enrolled:
+                continue
+
+            avg_mark = student.getAverageMark()
+            if isinstance(avg_mark, str):
+                continue
+
+            if avg_mark >= 50:
+                if student not in result["PASS"]:
                     result["PASS"].append(student)
-                else:
+            else:
+                if student not in result["FAIL"]:
                     result["FAIL"].append(student)
 
         return result
