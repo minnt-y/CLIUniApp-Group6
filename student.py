@@ -67,4 +67,4 @@ class Student:
         return total_mark / len(enrolled)
 
     def __str__(self) -> str:
-        return f"Name: {self._name} -- Student ID: {self._studentID} -- Email: {self._email}"
+        return f"{self._name} :: {self._studentID} --> Email: {self._email}"

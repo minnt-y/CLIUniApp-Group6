@@ -1,4 +1,4 @@
-from StudentManager import StudentManager
+from studentManager import StudentManager
 
 
 def student_subsystem(manager: StudentManager):

@@ -1,4 +1,4 @@
-from StudentManager import StudentManager
+from studentManager import StudentManager
 
 
 def admin_subsystem(manager: StudentManager):
@@ -44,8 +44,7 @@ def admin_subsystem(manager: StudentManager):
 
         elif choice == "4":
             print("\n--- Remove a Student ---")
-            sid = input("Enter 6-digit Student ID to remove: ").strip()
-            students = manager.getStudents()  # 假设获取所有学生的 方法叫 getStudents()
+            students = manager.getStudents()
             if not students:
                 print("No registered students found.")
                 continue

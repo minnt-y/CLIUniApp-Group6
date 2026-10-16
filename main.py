@@ -1,4 +1,4 @@
-from StudentManager import StudentManager
+from studentManager import StudentManager
 from AdminCLI import admin_subsystem
 from StudentCLI import student_subsystem
 
