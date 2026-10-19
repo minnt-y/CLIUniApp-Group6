@@ -7,17 +7,14 @@ def main():
     manager = StudentManager()
 
     while True:
-        print("\n--- UNIVERSITY SYSTEM: ADMIN & STUDENT ---")
-        print("1. Admin Subsystem\n2. Student Subsystem\n3. Exit")
+        choice = input("University System: (A)dmin, (S)tudent, or X : ").strip().upper()
 
-        choice = input("Enter(1-3): ").strip()
-
-        if choice == "1":
+        if choice == "A":
             admin_subsystem(manager)
-        elif choice == "2":
+        elif choice == "S":
             student_subsystem(manager)
-        elif choice == "3":
-            print("\nExited.")
+        elif choice == "X":
+            print("Thank You")
             break
 
 
