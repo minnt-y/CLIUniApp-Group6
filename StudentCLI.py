@@ -3,95 +3,111 @@ from studentManager import StudentManager
 
 def student_subsystem(manager: StudentManager):
     while True:
-        print("\n=== STUDENT MENU ===")
-        print("1. Register\n2. Login\n3. Back")
-        choice = input("Enter (1-3): ").strip()
+        choice = input("Student System (l/r/x): ").strip().lower()
 
-        if choice == "1":
-            print("\n--- Student Registration ---")
-            name = input("Name: ").strip()
+        if choice == "r":
+            print("Student Sign Up")
             email = input("Email: ").strip()
             password = input("Password: ").strip()
 
-            result = manager.registerStudent(name, email, password)
-
-            if result:
-                print(f"\nRegistration successful! Student ID: {result.getStudentID()}")
+            if not manager.validateEmail(email) or not manager.validatePassword(
+                password
+            ):
+                print("Incorrect email or password format")
+                continue
             else:
-                print(
-                    "\nRegistration failed. Please check email format, password criteria, or if the email is already registered."
-                )
+                print("Email and password formats acceptable")
 
-        elif choice == "2":
-            print("\n--- Student Login ---")
-            student_id = input("Student ID: ").strip()
+            exists = any(s.getEmail() == email for s in manager.getAllStudents())
+            if exists:
+                matched_name = next(
+                    (
+                        s.getName()
+                        for s in manager.getAllStudents()
+                        if s.getEmail() == email
+                    ),
+                    "User",
+                )
+                print(f"Student {matched_name} already exists")
+                continue
+
+            name = input("Name: ").strip()
+            student = manager.registerStudent(name, email, password)
+            if student:
+                print(f"Enrolling Student {name}")
+
+        elif choice == "l":
+            print("Student Sign In")
+            email = input("Email: ").strip()
             password = input("Password: ").strip()
 
-            student = manager.loginStudent(student_id, password)
-            if student:
-                print(f"\nWelcome back, {student.getStudentID()}!")
-                student_logged_in_menu(manager, student)
+            if not manager.validateEmail(email) or not manager.validatePassword(
+                password
+            ):
+                print("Incorrect email or password format")
+                continue
             else:
-                print("\nInvalid Student ID or Password.")
+                print("email and password formats acceptable")
 
-        elif choice == "3":
+            student = None
+            for s in manager.getAllStudents():
+                if s.getEmail() == email and s._password == password:
+                    student = s
+                    break
+
+            if not student:
+                print("Student does not exist")
+                continue
+
+            student_course_menu(manager, student)
+
+        elif choice == "x":
             break
 
 
-def student_logged_in_menu(manager: StudentManager, student):
+def student_course_menu(manager: StudentManager, student):
     while True:
-        print(f"\n--- STUDENT ID: {student.getStudentID()} ---")
-        print(
-            "1. Enrol\n2. Remove Subject\n3. View Enrolments\n4. Change Password\n5. Logout"
-        )
+        choice = input("Student Course Menu (c/e/r/s/x): ").strip().lower()
 
-        choice = input("Enter (1-5): ").strip()
-
-        if choice == "1":
-            print("\n--- Enrol in a Subject ---")
-            subject = manager.enrolSubject(student.getStudentID())
-            if subject:
-                print(f"Enrolled: {subject}")
-            else:
-                print(f"Error: Max 4 subjects reached.")
-
-        elif choice == "2":
-            print("\n--- Remove a Subject ---")
+        if choice == "s":
             enrolled = student.viewEnrolmentList()
-            if not enrolled:
-                print("[Info] Not enrolled in any subjects.")
+            count = len(enrolled)
+            print(f"Showing {count} subjects")
+            for sub in enrolled:
+                print(sub)
+
+        elif choice == "e":
+            if len(student.viewEnrolmentList()) >= 4:
+                print("Students are allowed to enrol in 4 subjects only")
                 continue
 
-            print("Current subjects:")
-            for sub in enrolled:
-                print(
-                    f"Subject ID: {sub.getSubjectID()} -- Mark: {sub.getMark()} -- Grade: {sub.getGrade()}"
-                )
+            subject = manager.enrolSubject(student.getStudentID())
+            if subject:
+                print(f"Enrolling in Subject-{subject.getSubjectID()}")
+                count = len(student.viewEnrolmentList())
+                print(f"You are now enrolled in {count} out of 4 subjects")
 
-            sub_id = input("Subject ID to remove: ").strip()
+        elif choice == "r":
+            sub_id = input("Remove Subject by ID: ").strip()
             success = manager.removeSubject(student.getStudentID(), sub_id)
             if success:
-                print(f"Subject {sub_id} has been removed.")
-            else:
-                print(f"Subject ID {sub_id} not found in enrolment list.")
+                print(f"Droping Subject-{sub_id}")
+                count = len(student.viewEnrolmentList())
+                print(f"You are now enrolled in {count} out of 4 subjects")
 
-        elif choice == "3":
-            print("\n--- Current Enrolment List ---")
-            enrolled = student.viewEnrolmentList()
-            if not enrolled:
-                print("Enrolment list is empty.")
-            else:
-                for subject in enrolled:
-                    print(f"{subject}")
+        elif choice == "c":
+            print("Updating Password")
+            while True:
+                new_pwd = input("New Password: ").strip()
+                confirm_pwd = input("Confirm Password: ").strip()
+                if new_pwd == confirm_pwd:
+                    success = manager.changePassword(student.getStudentID(), new_pwd)
+                    if success:
+                        break
+                    else:
+                        print("Password format incorrect - try again")
+                else:
+                    print("Password does not match - try again")
 
-        elif choice == "4":
-            print("\n--- Change Password ---")
-            new_pwd = input("New password: ").strip()
-            success = manager.changePassword(student.getStudentID(), new_pwd)
-            if success:
-                print("Password changed.")
-            else:
-                print(f"Error: Invalid format.")
-
-        elif choice == "5":
+        elif choice == "x":
             break

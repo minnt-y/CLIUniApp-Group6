@@ -50,7 +50,7 @@ class StudentManager:
             if student.getEmail() == email:
                 return False
 
-        # Create new student
+        # Create a new student and add to the list
         student = Student(name, email, password)
         self.students.append(student)
         self.saveData()
