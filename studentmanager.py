@@ -19,14 +19,14 @@ class StudentManager:
         if not email or not email.endswith("@university.com"):
             return False
         return True
-
+    
     def validatePassword(self, password: str) -> bool:
         if not password:
             return False
 
         if not password[0].isupper():
             return False
-
+        #
         letter_count = sum(1 for c in password if c.isalpha())
         if letter_count < 5:
             return False
