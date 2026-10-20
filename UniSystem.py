@@ -3,7 +3,7 @@ from AdminCLI import admin_subsystem
 from StudentCLI import student_subsystem
 
 
-def main():
+def UniSystem():
     manager = StudentManager()
 
     while True:
@@ -19,4 +19,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    UniSystem()
