@@ -5,6 +5,9 @@
 
 Project Structure
 CLIUniApp
+├── GUI
+ ├── GUIEntry.py       # GUI entry point for CLIUniApp
+ ├── loginWindow.py    # Login window
 
 ├── main.py            # Application entry point and menu router for CLIUniApp
 
