@@ -41,6 +41,9 @@ class Student:
 
     def setPassword(self, new_password: str) -> None:
         self._password = new_password
+    
+    def getPassword(self) -> str:
+        return self._password
 
     def viewEnrolmentList(self) -> list:
         return self._enrolledSubjects.copy()

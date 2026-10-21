@@ -9,3 +9,9 @@ class InvalidEmailFormatException(Exception):
     def __init__(self, message="Invalid email format: Must end with @university.com"):
         self.message = message
         super().__init__(self.message)
+        
+class InvalidStudentCredentialsException(Exception):
+    """Exception that can be thrown when student credential is not valid"""
+    def __init__(self, message="Invalid student credential: Student does not exist."):
+        self.message = message
+        super().__init__(self.message)

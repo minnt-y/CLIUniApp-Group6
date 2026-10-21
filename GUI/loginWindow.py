@@ -2,8 +2,9 @@ import tkinter as tk
 import sys
 import os
 
-from GUIExceptions import EmptyFieldException, InvalidEmailFormatException
+from GUIExceptions import EmptyFieldException, InvalidEmailFormatException, InvalidStudentCredentialsException
 from exceptionWindow import ExceptionWindow
+from dashboardWindow import Dashboard
 from PIL import Image, ImageTk
 
 # 获取当前文件(loginWindow.py)所在目录(GUI)的上一级目录(即项目根目录)，并加入系统路径
@@ -74,16 +75,64 @@ class LoginWindow(tk.Tk):
         tk.mainloop()
     
     def handle_login(self):
+        """Handle button-click login event."""
         try:
-            self.email_check(self.emailField.get())
+            email = self.emailField.get()
+            pwd = self.pwdField.get()
+            self.login_field_check(email, pwd)
+            self.email_check(email)
+            student = self.student_check(email, pwd)
+        except EmptyFieldException as e:
+            ExceptionWindow(self, str(e))
         except InvalidEmailFormatException as e:
             self.clear_email()
             ExceptionWindow(self, str(e))
+        except InvalidStudentCredentialsException as e:
+            self.clear_email()
+            self.clear_pwd()
+            ExceptionWindow(self, str(e))
+        else:
+            self.withdraw()
+            Dashboard(self, user=student, manager=self.manager)
     
     def email_check(self, email:str):
+        """Check the user typed email validity."""
         if not self.manager.validateEmail(email):
             raise InvalidEmailFormatException()
         return True
+    
+    def login_field_check(self, email:str, pwd:str):
+        """Check the empty login fields."""
+        if not email and not pwd:
+            raise EmptyFieldException("Empty field: Both email and password cannot be empty!")
+        elif not email:
+            raise EmptyFieldException("Empty field: Email cannot be empty!")
+        elif not pwd:
+            raise EmptyFieldException("Empty field: Password cannot be empty!")
+        return True
+    
+    def student_check(self, email:str, pwd:str):
+        """Check student credentials."""
+        error_msg, student = self.search_student(email, pwd)
+        if not student:
+            raise InvalidStudentCredentialsException(error_msg)
+        return student
+    
+    def search_student(self, email:str, pwd:str):
+        """Search user typed student information in shared student database"""
+        invalid_credential_msg = "Invalid Credential: Not valid student!"
+        for student in self.manager.getAllStudents():
+            print("Email: ", student.getEmail())
+            print("Password: ", student.getPassword())
+            if email == student.getEmail() and pwd == student.getPassword():
+                # Case 1: both email and password are matched
+                return None, student
+            elif email == student.getEmail() and pwd != student.getPassword():
+                # Case 2: email correct but password is not
+                invalid_credential_msg = "Invalid Credential: Password not correct!"
+                break
+        # Case 3: Invalid credentials
+        return invalid_credential_msg, None
     
     def clear_email(self):
         self.emailField.delete(0, tk.END)
