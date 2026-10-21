@@ -15,5 +15,13 @@ Project Structure
 ├── StudentCLI.py      # Student subsystem CLI interface
 ├── students.data      # Local binary file for persistent student records (auto-generated)
 └── GUI
+    ├── dashboardWindow.py # Dashboard
+    ├── exceptionWindow.py # Exception Window
     ├── GUIEntry.py       # GUI entry point for CLIUniApp
-    └── loginWindow.py    # Login window
+    ├── GUIExceptions.py  # GUI Exception Class
+    ├── loginWindow.py    # Login window
+    └── Photos
+        ├── error_sign.png # Image for error sign
+        └── students.jpg # Image for a group of students
+        
+
