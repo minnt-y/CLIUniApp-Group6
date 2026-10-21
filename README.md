@@ -13,7 +13,7 @@ Project Structure
 ├── StudentManager.py  # Controller (manages business logic, password validation, and high-level system actions)
 ├── AdminCLI.py        # Admin subsystem CLI interface
 ├── StudentCLI.py      # Student subsystem CLI interface
-└── students.data      # Local binary file for persistent student records (auto-generated)
-├── GUI
+├── students.data      # Local binary file for persistent student records (auto-generated)
+└── GUI
     ├── GUIEntry.py       # GUI entry point for CLIUniApp
     └── loginWindow.py    # Login window
