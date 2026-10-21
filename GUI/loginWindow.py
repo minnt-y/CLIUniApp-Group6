@@ -1,5 +1,15 @@
 import tkinter as tk
+import sys
+import os
+
+from GUIExceptions import EmptyFieldException, InvalidEmailFormatException
+from exceptionWindow import ExceptionWindow
 from PIL import Image, ImageTk
+
+# 获取当前文件(loginWindow.py)所在目录(GUI)的上一级目录(即项目根目录)，并加入系统路径
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from student import Student
+from studentManager import StudentManager
 
 
 class LoginWindow(tk.Tk):
@@ -10,6 +20,8 @@ class LoginWindow(tk.Tk):
         self.title("GUIUniApp")
         self.configure(bg="#27E4F5")
         self.resizable(False, False)
+        
+        self.manager = StudentManager()
         
         # Set window top title
         top_title = tk.Label(self, text="Welcome to University Student Interactive System", 
@@ -42,21 +54,39 @@ class LoginWindow(tk.Tk):
         
         # Email input field set up
         emailText = tk.StringVar()
-        emailField = tk.Entry(box_frame, textvariable=emailText)
-        emailField.grid(column=1, row=0, padx=5, pady=5, sticky=tk.W)
+        self.emailField = tk.Entry(box_frame, textvariable=emailText)
+        self.emailField.grid(column=1, row=0, padx=5, pady=5, sticky=tk.W)
        
         # Password input field set up
         pwdText = tk.StringVar()
-        pwdField = tk.Entry(box_frame, textvariable=pwdText)
-        pwdField.grid(column=1, row=1, padx=5, pady=5, sticky=tk.N)
+        self.pwdField = tk.Entry(box_frame, textvariable=pwdText, show="*")
+        self.pwdField.grid(column=1, row=1, padx=5, pady=5, sticky=tk.N)
         
         # Quit button set up
         quitBtn = tk.Button(box_frame, text='Quit',command=lambda: self.quit())
         quitBtn.grid(column=1, row=3, sticky=tk.W, padx=5, pady=5)
         
         # Login button set up
-        loginBtn = tk.Button(box_frame, text='Login',command=self.login)
+        loginBtn = tk.Button(box_frame, text='Login',command=self.handle_login)
         loginBtn.grid(column=1, row=3, sticky=tk.E, padx=5, pady=5)
+        
+        # Show the current window
+        tk.mainloop()
     
-    def login():
-        return
+    def handle_login(self):
+        try:
+            self.email_check(self.emailField.get())
+        except InvalidEmailFormatException as e:
+            self.clear_email()
+            ExceptionWindow(self, str(e))
+    
+    def email_check(self, email:str):
+        if not self.manager.validateEmail(email):
+            raise InvalidEmailFormatException()
+        return True
+    
+    def clear_email(self):
+        self.emailField.delete(0, tk.END)
+    
+    def clear_pwd(self):
+        self.pwdField.delete(0, tk.END)
