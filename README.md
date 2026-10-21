@@ -6,7 +6,7 @@
 Project Structure
 CLIUniApp
 
-├── main.py            # Application entry point and menu router for CLIUniApp
+├── UniSystem.py            # Application entry point and menu router for CLIUniApp
 
 ├── subject.py         # Subject model (manages 3-digit IDs, random marks [25-100], and grade calculations)
 
