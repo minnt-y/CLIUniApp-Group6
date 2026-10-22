@@ -18,7 +18,7 @@ Project Structure
     ├── dashboardWindow.py # Dashboard
     ├── enrolWindow.py     # Window for course selection
     ├── exceptionWindow.py # Exception Window
-    ├── GUIEntry.py        # GUI entry point for CLIUniApp
+    ├── GUIEntry.py        # GUI entry point for GUIUniApp
     ├── GUIExceptions.py   # GUI Exception Class
     ├── loginWindow.py     # Login window
     ├── subjectWindow.py   # Window for viewing enrolled subject information
