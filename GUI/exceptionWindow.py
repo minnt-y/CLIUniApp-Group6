@@ -18,6 +18,15 @@ class ExceptionWindow(tk.Toplevel):
         self.configure(bg="white")
         self.resizable(False, False)
         
+        # Make sure this window will always appear 
+        # in front of the main window.
+        self.transient(master)
+        # Make sure the main window cannot be used 
+        # when this window is popped out
+        self.grab_set()
+        # Stay focus on this window when encontering error
+        self.focus_force()
+        
         # Error box frame set up
         error_box = tk.LabelFrame(self, text="Oops! You Got an Error!!!", 
                                   fg="#F52727", bg="white", font="Helvetice 15 bold")
@@ -30,8 +39,12 @@ class ExceptionWindow(tk.Toplevel):
         error_imglbl.pack(side=tk.LEFT, padx=(0, 15))
         # Error message set up
         error_message = tk.Message(error_box, text=error_msg, 
-                                   fg="black", font="Helvetica 12 bold", bg="white")
+                                   fg="black", font="Helvetica 12 bold", bg="white", justify='left')
         error_message.pack(pady=10, padx=10, side=tk.LEFT)
+        
+        # Not whole mainloop longer executing until the user 
+        # close this window
+        self.wait_window(self)
         
         
         

@@ -16,12 +16,17 @@ Project Structure
 ├── students.data      # Local binary file for persistent student records (auto-generated)
 └── GUI
     ├── dashboardWindow.py # Dashboard
+    ├── enrolWindow.py     # Window for course selection
     ├── exceptionWindow.py # Exception Window
-    ├── GUIEntry.py       # GUI entry point for CLIUniApp
-    ├── GUIExceptions.py  # GUI Exception Class
-    ├── loginWindow.py    # Login window
-    └── Photos
-        ├── error_sign.png # Image for error sign
-        └── students.jpg # Image for a group of students
+    ├── GUIEntry.py        # GUI entry point for CLIUniApp
+    ├── GUIExceptions.py   # GUI Exception Class
+    ├── loginWindow.py     # Login window
+    ├── subjectWindow.py   # Window for viewing enrolled subject information
+    └── Photos             # Folders for image data
+        ├── enrolment.jpg
+        ├── error_sign.png 
+        ├── students.jpg
+        ├── study_img.jpeg
+        └── subject.png 
         
 
