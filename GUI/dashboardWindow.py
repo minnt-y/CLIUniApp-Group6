@@ -3,6 +3,8 @@ import sys
 import os
 
 from PIL import Image, ImageTk
+from enrolWindow import EnrolWindow
+from subjectWindow import SubjectWindow
 
 # 获取当前文件(loginWindow.py)所在目录(GUI)的上一级目录(即项目根目录)，并加入系统路径
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -59,8 +61,12 @@ class Dashboard(tk.Toplevel):
         # Enrolment label
         enrol_lbl = tk.Label(dashboard_frame, text="Enrol a Course", fg="green3", bg="#FBFF0E", font="TkHeadingFont 13 bold")
         enrol_lbl.grid(column=0, row=1, pady=(0,10))
+        # Click event setup for going to 'Course Enrolment Window'
+        def go_to_enrolment():
+            EnrolWindow(self, manager, user)
+        enrol_imglbl.bind("<Button-1>", lambda e:go_to_enrolment())
         
-        # Clickable img to 'Check Subject'
+        # Clickable img to 'View Courses'
         sub_img = Image.open("./GUI/Photos/subject.png").resize((220, 150))
         self.tk_sub_img = ImageTk.PhotoImage(sub_img)
         sub_imglbl = tk.Label(dashboard_frame, image=self.tk_sub_img, bg="#27E4F5",cursor="hand2")
@@ -68,7 +74,10 @@ class Dashboard(tk.Toplevel):
         # Subject label
         sub_lbl = tk.Label(dashboard_frame, text="View Enrolled Courses", fg="green3", bg="#FBFF0E", font="TkHeadingFont 13 bold")
         sub_lbl.grid(column=1, row=1, pady=(0,10))
-        
+        # Click event setup for going to 'View Courses Window'
+        def go_to_subject_view():
+            SubjectWindow(self, manager, user)
+        sub_imglbl.bind("<Button-1>", lambda e:go_to_subject_view())
         
         
         
