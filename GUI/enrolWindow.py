@@ -75,7 +75,7 @@ class EnrolWindow(tk.Toplevel):
         enrol2_imglbl.place(relx=0.2, rely=0.5, anchor="center")
         
         # Add another image
-        enrol_3_img = Image.open("./GUI/Photos/enrol_3.png").resize((300, 150))
+        enrol_3_img = Image.open("./GUI/Photos/enrol_3.png").resize((230, 150))
         tk_enrol3_img = ImageTk.PhotoImage(enrol_3_img)
         enrol3_imglbl = tk.Label(self, image=tk_enrol3_img, bg="#27E4F5")
         enrol3_imglbl.image = tk_enrol3_img

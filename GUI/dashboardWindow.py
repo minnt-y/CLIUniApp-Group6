@@ -22,7 +22,7 @@ class Dashboard(tk.Toplevel):
         self.user_id = user.getStudentID()
         
         self.geometry("800x600")
-        self.title("GUIUniApp")
+        self.title("GUIUniApp - Dashboard")
         self.configure(bg="#27E4F5")
         self.resizable(False, False)
         
@@ -47,7 +47,7 @@ class Dashboard(tk.Toplevel):
         dashboard_frame.place(relx=0.5, rely=0.3, anchor='center')
         
         # Dashboard Img
-        dash_img = Image.open("./GUI/Photos/study_img.jpeg").resize((500, 200))
+        dash_img = Image.open("./GUI/Photos/study_img.jpg").resize((400, 200))
         tk_dash_img = ImageTk.PhotoImage(dash_img)
         dash_imglbl = tk.Label(self, image=tk_dash_img, bg="#27E4F5")
         dash_imglbl.image = tk_dash_img

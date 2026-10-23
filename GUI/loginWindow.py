@@ -17,7 +17,7 @@ class LoginWindow(tk.Tk):
         super().__init__()
         
         self.geometry("800x600")
-        self.title("GUIUniApp")
+        self.title("GUIUniApp - Student Login")
         self.configure(bg="#27E4F5")
         self.resizable(False, False)
         
