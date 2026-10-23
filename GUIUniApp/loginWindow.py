@@ -11,6 +11,7 @@ from exceptionWindow import ExceptionWindow
 from dashboardWindow import Dashboard
 from PIL import Image, ImageTk
 
+<<<<<<< HEAD
 # Configure the CLIUniApp path to enable assess 
 # the .py files in the other directory.
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -22,6 +23,13 @@ if root_dir not in sys.path:
 if cli_app_dir not in sys.path:
     sys.path.append(cli_app_dir)
     
+=======
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(current_dir)
+if root_dir not in sys.path:
+    sys.path.append(root_dir)
+
+>>>>>>> 11efe91 (adjust login window geometry size)
 from CLIUniApp.studentManager import StudentManager
 
 
@@ -29,7 +37,7 @@ class LoginWindow(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.geometry("800x600")
+        self.geometry("1100x700")
         self.title("GUIUniApp - Student Login")
         self.configure(bg="#27E4F5")
         self.resizable(False, False)

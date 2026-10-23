@@ -1,3 +1,10 @@
+import sys
+import os
+
+cli_dir = os.path.dirname(os.path.abspath(__file__))
+if cli_dir not in sys.path:
+    sys.path.append(cli_dir)
+
 from student import Student, usedStudentIDs
 from subject import Subject, usedSubjectIDs
 from studentBase import StudentBase

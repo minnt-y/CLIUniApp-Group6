@@ -5,6 +5,7 @@ import os
 from tkinter import ttk
 from PIL import Image, ImageTk
 
+<<<<<<< HEAD
 # Configure the CLIUniApp path to enable assess 
 # the .py files in the other directory.
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -15,6 +16,12 @@ if root_dir not in sys.path:
     sys.path.append(root_dir)
 if cli_app_dir not in sys.path:
     sys.path.append(cli_app_dir)
+=======
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(current_dir)
+if root_dir not in sys.path:
+    sys.path.append(root_dir)
+>>>>>>> 11efe91 (adjust login window geometry size)
 
 from CLIUniApp.student import Student
 from CLIUniApp.subject import Subject
