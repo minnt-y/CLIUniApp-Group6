@@ -10,7 +10,7 @@ from subjectWindow import SubjectWindow
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from student import Student
-from studentmanager import StudentManager
+from studentManager import StudentManager
 
 
 class Dashboard(tk.Toplevel):
