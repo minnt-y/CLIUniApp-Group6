@@ -10,39 +10,58 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from student import Student
 from subject import Subject
-from studentManager import StudentManager
+from studentmanager import StudentManager
+
 
 class SubjectWindow(tk.Toplevel):
-    def __init__(self, master:tk.Toplevel, manager: StudentManager, user: Student):
+    def __init__(self, master: tk.Toplevel, manager: StudentManager, user: Student):
         super().__init__(master=master)
         # Hide the master (Login Window)
         master.withdraw()
         # Record the login student name and id
         self.user_name = user.getName()
         self.user_id = user.getStudentID()
-                
+
         self.geometry("800x600")
         self.title("GUIUniApp - Course View")
         self.configure(bg="#27E4F5")
         self.resizable(False, False)
-                
+
         # Greeting message set up
-        greet_msg = tk.Label(self, text=f"Hello! {user.getName()} (ID: {user.getStudentID()})!\nPlease find below your enrolled courses.", 
-                                    fg="#D72411", bg="#27E4F5", font="TkHeadingFont 13 bold")
-        greet_msg.place(relx=0.03, rely=0.03, anchor='w')
-        
+        greet_msg = tk.Label(
+            self,
+            text=f"Hello! {user.getName()} (ID: {user.getStudentID()})!\nPlease find below your enrolled courses.",
+            fg="#D72411",
+            bg="#27E4F5",
+            font="TkHeadingFont 13 bold",
+        )
+        greet_msg.place(relx=0.03, rely=0.03, anchor="w")
+
         # Clickable text 'Go Back' set up
         def go_back():
             master.wm_deiconify()
             self.destroy()
-        back_press = tk.Message(self, text="Go Back<--", fg="black", font="Helvetica 12 bold underline", bg="yellow")
+
+        back_press = tk.Message(
+            self,
+            text="Go Back<--",
+            fg="black",
+            font="Helvetica 12 bold underline",
+            bg="yellow",
+        )
         back_press.place(relx=0.9, rely=0.03, anchor="e")
-        back_press.bind("<Button-1>", lambda e:go_back())
-        
+        back_press.bind("<Button-1>", lambda e: go_back())
+
         # Message label
-        self.msg = tk.Label(self, text=f"Current Enrolment Table", fg="green3", bg="#FBFF0E", font="Helvetica 25 bold")
-        self.msg.place(relx=0.5, rely=0.2, anchor='center')
-        
+        self.msg = tk.Label(
+            self,
+            text=f"Current Enrolment Table",
+            fg="green3",
+            bg="#FBFF0E",
+            font="Helvetica 25 bold",
+        )
+        self.msg.place(relx=0.5, rely=0.2, anchor="center")
+
         # Column index set up for controling the properties of column name
         columns = ("id", "mark", "grade")
         # Create a table view (Treeview) for showing the subjects
@@ -58,19 +77,15 @@ class SubjectWindow(tk.Toplevel):
         # Insert current course enrolment data of current login student
         all_courses = manager.viewEnrolmentList(self.user_id)
         for c in all_courses:
-            self.enrol_table.insert("", tk.END, values=(
-                c.getSubjectID(),
-                c.getMark(),
-                c.getGrade()
-            ))
+            self.enrol_table.insert(
+                "", tk.END, values=(c.getSubjectID(), c.getMark(), c.getGrade())
+            )
         # Put enrol table into current window
-        self.enrol_table.place(relx=0.5, rely=0.5, anchor='center')
-        
+        self.enrol_table.place(relx=0.5, rely=0.5, anchor="center")
+
         # Add an image
         view_1_img = Image.open("./GUI/Photos/view_1.jpg").resize((255, 150))
         tk_view1_img = ImageTk.PhotoImage(view_1_img)
         view1_imglbl = tk.Label(self, image=tk_view1_img, bg="#27E4F5")
         view1_imglbl.image = tk_view1_img
         view1_imglbl.place(relx=0.5, rely=0.8, anchor="center")
-        
-        

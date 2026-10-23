@@ -26,7 +26,7 @@ class StudentManager:
 
         if not password[0].isupper():
             return False
-        #
+        
         letter_count = sum(1 for c in password if c.isalpha())
         if letter_count < 5:
             return False
