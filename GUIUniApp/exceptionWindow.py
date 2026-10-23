@@ -13,7 +13,7 @@ class ExceptionWindow(tk.Toplevel):
         # Record the reference to the master window
         self.master_win = master
 
-        # Error box frame set up
+        # Error box frame set up.
         error_box = tk.LabelFrame(
             self,
             text="Oops! You Got an Error!!!",
