@@ -1,7 +1,5 @@
 import random
 
-usedStudentIDs = set()
-
 
 class Student:
     def __init__(
@@ -10,24 +8,21 @@ class Student:
         email: str = None,
         password: str = None,
         studentID: str = None,
+        existingIDs: set = None,
     ):
-        if studentID is None:
-            self._studentID = self.generateStudentID()
-        else:
-            self._studentID = studentID
-
+        self._studentID = (
+            studentID if studentID else self.generateStudentID(existingIDs or set())
+        )
         self._name = name
         self._email = email
         self._password = password
         self._enrolledSubjects = []
 
-    def generateStudentID(self) -> str:
+    def generateStudentID(self, existingIDs: set) -> str:
         while True:
-            num = random.randint(1, 999999)
-            studentID = f"{num:06d}"
-
-            if studentID not in usedStudentIDs:
-                usedStudentIDs.add(studentID)
+            studentID = f"{random.randint(1, 999999):06d}"
+            if studentID not in existingIDs:
+                existingIDs.add(studentID)
                 return studentID
 
     def getName(self) -> str:
@@ -41,7 +36,7 @@ class Student:
 
     def setPassword(self, new_password: str) -> None:
         self._password = new_password
-    
+
     def getPassword(self) -> str:
         return self._password
 
@@ -51,7 +46,6 @@ class Student:
     def enrolSubject(self, subject) -> bool:
         if len(self._enrolledSubjects) >= 4:
             return False
-
         self._enrolledSubjects.append(subject)
         return True
 
@@ -63,11 +57,10 @@ class Student:
         return False
 
     def getAverageMark(self) -> float:
-        enrolled = self.viewEnrolmentList()
-        if not enrolled:
-            return "No enrolled subjects"
-        total_mark = sum(sub.getMark() for sub in enrolled)
-        return total_mark / len(enrolled)
+        if not self._enrolledSubjects:
+            return 0.0
+        total_mark = sum(sub.getMark() for sub in self._enrolledSubjects)
+        return total_mark / len(self._enrolledSubjects)
 
     def __str__(self) -> str:
         return f"{self._name} :: {self._studentID} --> Email: {self._email}"
