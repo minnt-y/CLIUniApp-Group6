@@ -51,7 +51,7 @@ def student_subsystem(manager: StudentManager):
 
             student = None
             for s in manager.getAllStudents():
-                if s.getEmail() == email and s._password == password:
+                if s.getEmail() == email and s.getPassword() == password:
                     student = s
                     break
 
