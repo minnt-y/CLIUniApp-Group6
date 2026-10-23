@@ -5,8 +5,16 @@ import os
 from tkinter import ttk
 from PIL import Image, ImageTk
 
-# 获取当前文件(loginWindow.py)所在目录(GUI)的上一级目录(即项目根目录)，并加入系统路径
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Configure the CLIUniApp path to enable assess 
+# the .py files in the other directory.
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(current_dir)
+cli_app_dir = os.path.join(root_dir, "CLIUniApp")
+
+if root_dir not in sys.path:
+    sys.path.append(root_dir)
+if cli_app_dir not in sys.path:
+    sys.path.append(cli_app_dir)
 
 from CLIUniApp.student import Student
 from CLIUniApp.subject import Subject
@@ -84,7 +92,7 @@ class SubjectWindow(tk.Toplevel):
         self.enrol_table.place(relx=0.5, rely=0.5, anchor="center")
 
         # Add an image
-        view_1_img = Image.open("./GUI/Photos/view_1.jpg").resize((255, 150))
+        view_1_img = Image.open("./GUIUniApp/Photos/view_1.jpg").resize((255, 150))
         tk_view1_img = ImageTk.PhotoImage(view_1_img)
         view1_imglbl = tk.Label(self, image=tk_view1_img, bg="#27E4F5")
         view1_imglbl.image = tk_view1_img

@@ -1,14 +1,6 @@
 import tkinter as tk
-import sys
-import os
 
 from PIL import Image, ImageTk
-
-# # 获取当前文件(loginWindow.py)所在目录(GUI)的上一级目录(即项目根目录)，并加入系统路径
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# from student import Student
-# from studentManager import StudentManager
 
 class ExceptionWindow(tk.Toplevel):
     def __init__(self, master:tk.Toplevel, error_msg:str):
@@ -25,7 +17,7 @@ class ExceptionWindow(tk.Toplevel):
                                   fg="#F52727", bg="white", font="Helvetice 15 bold")
         error_box.place(rely=0.5, relx=0.5, anchor='center')
         # Error image set up
-        error_img = Image.open("./GUI/Photos/error_sign.png").resize((100, 100))
+        error_img = Image.open("./GUIUniApp/Photos/error_sign.png").resize((100, 100))
         self.tk_student_img = ImageTk.PhotoImage(error_img)
         error_imglbl = tk.Label(error_box, image=self.tk_student_img, bg="white")
         error_imglbl.image = self.tk_student_img 

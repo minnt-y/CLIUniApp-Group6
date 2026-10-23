@@ -6,8 +6,16 @@ from PIL import Image, ImageTk
 from enrolWindow import EnrolWindow
 from subjectWindow import SubjectWindow
 
-# 获取当前文件(loginWindow.py)所在目录(GUI)的上一级目录(即项目根目录)，并加入系统路径
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Configure the CLIUniApp path to enable assess 
+# the .py files in the other directory.
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(current_dir)
+cli_app_dir = os.path.join(root_dir, "CLIUniApp")
+
+if root_dir not in sys.path:
+    sys.path.append(root_dir)
+if cli_app_dir not in sys.path:
+    sys.path.append(cli_app_dir)
 
 from CLIUniApp.student import Student
 from CLIUniApp.studentManager import StudentManager
@@ -67,14 +75,14 @@ class Dashboard(tk.Toplevel):
         dashboard_frame.place(relx=0.5, rely=0.3, anchor="center")
 
         # Dashboard Img
-        dash_img = Image.open("./GUI/Photos/study_img.jpg").resize((400, 200))
+        dash_img = Image.open("./GUIUniApp/Photos/study_img.jpg").resize((400, 200))
         tk_dash_img = ImageTk.PhotoImage(dash_img)
         dash_imglbl = tk.Label(self, image=tk_dash_img, bg="#27E4F5")
         dash_imglbl.image = tk_dash_img
         dash_imglbl.place(relx=0.5, rely=0.6, anchor="n")
 
         # Clickable img to 'Course Enrolment'
-        enrol_img = Image.open("./GUI/Photos/enrolment.jpg").resize((220, 150))
+        enrol_img = Image.open("./GUIUniApp/Photos/enrolment.jpg").resize((220, 150))
         self.tk_enrol_img = ImageTk.PhotoImage(enrol_img)
         enrol_imglbl = tk.Label(
             dashboard_frame, image=self.tk_enrol_img, bg="#27E4F5", cursor="hand2"
@@ -97,7 +105,7 @@ class Dashboard(tk.Toplevel):
         enrol_imglbl.bind("<Button-1>", lambda e: go_to_enrolment())
 
         # Clickable img to 'View Courses'
-        sub_img = Image.open("./GUI/Photos/subject.png").resize((220, 150))
+        sub_img = Image.open("./GUIUniApp/Photos/subject.png").resize((220, 150))
         self.tk_sub_img = ImageTk.PhotoImage(sub_img)
         sub_imglbl = tk.Label(
             dashboard_frame, image=self.tk_sub_img, bg="#27E4F5", cursor="hand2"

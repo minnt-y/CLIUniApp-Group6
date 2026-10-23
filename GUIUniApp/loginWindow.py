@@ -11,8 +11,17 @@ from exceptionWindow import ExceptionWindow
 from dashboardWindow import Dashboard
 from PIL import Image, ImageTk
 
-# 获取当前文件(loginWindow.py)所在目录(GUI)的上一级目录(即项目根目录)，并加入系统路径
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Configure the CLIUniApp path to enable assess 
+# the .py files in the other directory.
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(current_dir)
+cli_app_dir = os.path.join(root_dir, "CLIUniApp")
+
+if root_dir not in sys.path:
+    sys.path.append(root_dir)
+if cli_app_dir not in sys.path:
+    sys.path.append(cli_app_dir)
+    
 from CLIUniApp.studentManager import StudentManager
 
 
@@ -38,7 +47,7 @@ class LoginWindow(tk.Tk):
         top_title.pack(pady=(20, 10))
 
         # Image set up
-        students_img = Image.open("./GUI/Photos/students.jpg").resize((300, 200))
+        students_img = Image.open("./GUIUniApp/Photos/students.jpg").resize((300, 200))
         tk_student_img = ImageTk.PhotoImage(students_img)
         students_imglbl = tk.Label(self, image=tk_student_img, bg="#27E4F5")
         students_imglbl.image = tk_student_img
@@ -104,8 +113,8 @@ class LoginWindow(tk.Tk):
     def handle_login(self):
         """Handle button-click login event."""
         try:
-            email = self.emailField.get()
-            pwd = self.pwdField.get()
+            email = self.emailField.get().strip()
+            pwd = self.pwdField.get().strip()
             self.login_field_check(email, pwd)
             self.email_check(email)
             student = self.student_check(email, pwd)
@@ -151,8 +160,6 @@ class LoginWindow(tk.Tk):
         """Search user typed student information in shared student database"""
         invalid_credential_msg = "Invalid Credential: Not valid student!"
         for student in self.manager.getAllStudents():
-            print("Email: ", student.getEmail())
-            print("Password: ", student.getPassword())
             if email == student.getEmail() and pwd == student.getPassword():
                 # Case 1: both email and password are matched
                 return None, student

@@ -1,0 +1,2 @@
+For GUIUniApp, go to GUIEntry.py under the GUIUniApp folder, and click run button on top right
+(or open a terminal and run this file with the command `python ./GUIUniApp/GUIEntry.py`)
