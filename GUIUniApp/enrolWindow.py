@@ -78,21 +78,21 @@ class EnrolWindow(tk.Toplevel):
         self.course_box.place(relx=0.5, rely=0.5, anchor="center")
 
         # Add image
-        enrol_1_img = Image.open("./Photos/enrol_1.jpeg").resize((150, 150))
+        enrol_1_img = Image.open("./GUIUniApp/Photos/enrol_1.jpeg").resize((150, 150))
         tk_enrol1_img = ImageTk.PhotoImage(enrol_1_img)
         enrol1_imglbl = tk.Label(self, image=tk_enrol1_img, bg="#27E4F5")
         enrol1_imglbl.image = tk_enrol1_img
         enrol1_imglbl.place(relx=0.8, rely=0.5, anchor="center")
 
         # Add another image
-        enrol_2_img = Image.open("./Photos/enrol_2.jpeg").resize((150, 150))
+        enrol_2_img = Image.open("./GUIUniApp/Photos/enrol_2.jpeg").resize((150, 150))
         tk_enrol2_img = ImageTk.PhotoImage(enrol_2_img)
         enrol2_imglbl = tk.Label(self, image=tk_enrol2_img, bg="#27E4F5")
         enrol2_imglbl.image = tk_enrol2_img
         enrol2_imglbl.place(relx=0.2, rely=0.5, anchor="center")
 
         # Add another image
-        enrol_3_img = Image.open("./Photos/enrol_3.png").resize((230, 150))
+        enrol_3_img = Image.open("./GUIUniApp/Photos/enrol_3.png").resize((230, 150))
         tk_enrol3_img = ImageTk.PhotoImage(enrol_3_img)
         enrol3_imglbl = tk.Label(self, image=tk_enrol3_img, bg="#27E4F5")
         enrol3_imglbl.image = tk_enrol3_img
