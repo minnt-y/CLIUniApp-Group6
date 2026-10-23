@@ -1,0 +1,53 @@
+import random
+
+usedSubjectIDs = set()
+
+
+class Subject:
+    def __init__(self, subjectID: str = None, mark: int = None):
+        if subjectID is None:
+            self._subjectID = self.generateSubjectID()
+        else:
+            self._subjectID = subjectID
+
+        if mark is None:
+            self._mark = self.generateRandomMark()
+        else:
+            self._mark = mark
+
+        self._grade = self.calculateGrade(self._mark)
+
+    def generateSubjectID(self, existingIDs=None) -> str:
+        while True:
+            subjectID = f"{random.randint(1, 999):03d}"
+
+            if subjectID not in usedSubjectIDs:
+                usedSubjectIDs.add(subjectID)
+                return subjectID
+
+    def generateRandomMark(self) -> int:
+        return random.randint(25, 100)
+
+    def calculateGrade(self, mark: int) -> str:
+        if mark >= 85:
+            return "HD"
+        elif mark >= 75:
+            return "D"
+        elif mark >= 65:
+            return "C"
+        elif mark >= 50:
+            return "P"
+        else:
+            return "Z"
+
+    def getSubjectID(self) -> str:
+        return self._subjectID
+
+    def getMark(self) -> int:
+        return self._mark
+
+    def getGrade(self) -> str:
+        return self._grade
+
+    def __str__(self) -> str:
+        return f"[ Subject::{self._subjectID} -- mark = {self._mark} -- grade = {self._grade:>2} ]"
