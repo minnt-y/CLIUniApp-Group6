@@ -15,7 +15,7 @@
    git clone [https://github.com/minnt-y/CLIUniApp-Group6.git](https://github.com/minnt-y/CLIUniApp-Group6.git)
 
 
-Project Structure
+## 4. Project Structure
 <pre>
 
 ├── UniSystem.py            # Application entry point and menu router for CLIUniApp
