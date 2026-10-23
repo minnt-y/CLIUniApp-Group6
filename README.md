@@ -10,10 +10,13 @@
 * **Operating System**: Windows, macOS, Linux
 
 ## 3. Setup & Installation
-* Clone or download the repository to your local machine:
-   ```bash
-   git clone [https://github.com/minnt-y/CLIUniApp-Group6.git](https://github.com/minnt-y/CLIUniApp-Group6.git)
+* 1) Clone or download the repository to your local machine:
+    ```bash
+    git clone [https://github.com/minnt-y/CLIUniApp-Group6.git](https://github.com/minnt-y/CLIUniApp-Group6.git)
 
+* 2) Install required third-party libraries:
+    ```bash
+    pip install Pillow
 
 ## 4. Project Structure
 <pre>
