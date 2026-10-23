@@ -9,8 +9,8 @@ from subjectWindow import SubjectWindow
 # 获取当前文件(loginWindow.py)所在目录(GUI)的上一级目录(即项目根目录)，并加入系统路径
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from student import Student
-from studentManager import StudentManager
+from CLIUniApp.student import Student
+from CLIUniApp.studentManager import StudentManager
 
 
 class Dashboard(tk.Toplevel):
