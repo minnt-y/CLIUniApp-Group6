@@ -1,7 +1,19 @@
 # 32555 - Assignment 1 Part 2 - UniApp (CLI & GUI)
 
-**Programming language**: Python 3.14
-**Required labraries**: Standard python librabries only
+## 1. Project Overview
+
+**UniApp** is a University Management System developed in Python 3.14, featuring both a Command Line Interface and a Graphical User Interface. The project is built following OOP principles, implements data persistence and error-handling mechanisms.
+
+## 2. System Requirements
+* **Programming language**: Python 3.14
+* **Required labraries**: Standard python librabries + **PIL (Pillow)** for GUI image processing
+* **Operating System**: Windows, macOS, Linux
+
+## 3. Setup & Installation
+* Clone or download the repository to your local machine:
+   ```bash
+   git clone [https://github.com/minnt-y/CLIUniApp-Group6.git](https://github.com/minnt-y/CLIUniApp-Group6.git)
+
 
 Project Structure
 <pre>
@@ -28,5 +40,5 @@ Project Structure
         ├── students.jpg
         ├── study_img.jpeg
         └── subject.png 
-        
+</pre>
 
