@@ -28,7 +28,7 @@ def admin_subsystem(manager: StudentManager):
                         for student, avg_mark in item_list:
                             grade_str = f"{grade:>2}"
                             print(
-                                f"{grade} --> [{student} --> GRADE:  {grade_str} - MARK: {avg_mark:.2f}]"
+                                f"{grade} --> [{student.getName()} :: {student.getStudentID()} --> GRADE:  {grade_str} - MARK: {avg_mark:.2f}]"
                             )
 
         elif choice == "p":
