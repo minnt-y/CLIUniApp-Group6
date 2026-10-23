@@ -2,8 +2,6 @@ import tkinter as tk
 
 from PIL import Image, ImageTk
 
-<<<<<<< HEAD
-=======
 # # 获取当前文件(loginWindow.py)所在目录(GUI)的上一级目录(即项目根目录)，并加入系统路径
 # sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -11,7 +9,6 @@ from PIL import Image, ImageTk
 # from studentManager import StudentManager
 
 
->>>>>>> 11efe91 (adjust login window geometry size)
 class ExceptionWindow(tk.Toplevel):
     def __init__(self, master: tk.Toplevel, error_msg: str):
         super().__init__(master=master)
@@ -32,7 +29,7 @@ class ExceptionWindow(tk.Toplevel):
         )
         error_box.place(rely=0.5, relx=0.5, anchor="center")
         # Error image set up
-        error_img = Image.open("./Photos/error_sign.png").resize((100, 100))
+        error_img = Image.open("./GUIUniApp/Photos/error_sign.png").resize((100, 100))
         self.tk_student_img = ImageTk.PhotoImage(error_img)
         error_imglbl = tk.Label(error_box, image=self.tk_student_img, bg="white")
         error_imglbl.image = self.tk_student_img
