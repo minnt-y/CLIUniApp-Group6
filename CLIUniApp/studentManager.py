@@ -5,8 +5,8 @@ cli_dir = os.path.dirname(os.path.abspath(__file__))
 if cli_dir not in sys.path:
     sys.path.append(cli_dir)
 
-from student import Student, usedStudentIDs
-from subject import Subject, usedSubjectIDs
+from student import Student
+from subject import Subject
 from studentBase import StudentBase
 import random
 
@@ -14,10 +14,14 @@ import random
 class StudentManager:
     def __init__(self):
         self.students = StudentBase.loadStudentData()
+
+        self._existing_studentIDs = set()
+        self._existing_subjectIDs = set()
+
         for student in self.students:
-            usedStudentIDs.add(student.getStudentID())
+            self._existing_studentIDs.add(student.getStudentID())
             for sub in student.viewEnrolmentList():
-                usedSubjectIDs.add(sub.getSubjectID())
+                self._existing_subjectIDs.add(sub.getSubjectID())
 
     def saveData(self) -> None:
         StudentBase.saveStudentData(self.students)
@@ -57,8 +61,14 @@ class StudentManager:
             if student.getEmail() == email:
                 return False
 
-        # Create a new student and add to the list
-        student = Student(name, email, password)
+        student = Student(
+            name=name,
+            email=email,
+            password=password,
+            existingIDs=self._existing_studentIDs,
+        )
+        self._existing_studentIDs.add(student.getStudentID())
+
         self.students.append(student)
         self.saveData()
 
@@ -66,7 +76,10 @@ class StudentManager:
 
     def loginStudent(self, studentID: str, password: str):
         for student in self.students:
-            if student.getStudentID() == studentID and student._password == password:
+            if (
+                student.getStudentID() == studentID
+                and student.getPassword() == password
+            ):
                 return student
 
         return None
@@ -89,7 +102,8 @@ class StudentManager:
                 if len(student.viewEnrolmentList()) >= 4:
                     return False
 
-                subject = Subject()
+                subject = Subject(existingIDs=self._existing_subjectIDs)
+                self._existing_subjectIDs.add(subject.getSubjectID())
 
                 student.enrolSubject(subject)
                 self.saveData()
@@ -127,8 +141,6 @@ class StudentManager:
             avg_mark = student.getAverageMark()
             if isinstance(avg_mark, str):
                 continue
-
-            avg_mark = student.getAverageMark()
 
             if avg_mark >= 85:
                 grade = "HD"
@@ -170,7 +182,7 @@ class StudentManager:
         for student in self.students:
             if student.getStudentID() == studentID:
                 self.students.remove(student)
-                usedStudentIDs.discard(studentID)
+                self._existing_studentIDs.discard(studentID)
                 self.saveData()
                 return True
 
@@ -178,5 +190,6 @@ class StudentManager:
 
     def clearAllStudents(self) -> None:
         self.students.clear()
-        usedStudentIDs.clear()
+        self._existing_studentIDs.clear()
+        self._existing_subjectIDs.clear()
         self.saveData()
