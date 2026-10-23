@@ -17,7 +17,7 @@ class ExceptionWindow(tk.Toplevel):
                                   fg="#F52727", bg="white", font="Helvetice 15 bold")
         error_box.place(rely=0.5, relx=0.5, anchor='center')
         # Error image set up
-        error_img = Image.open("./GUIUniApp/Photos/error_sign.png").resize((100, 100))
+        error_img = Image.open("./Photos/error_sign.png").resize((100, 100))
         self.tk_student_img = ImageTk.PhotoImage(error_img)
         error_imglbl = tk.Label(error_box, image=self.tk_student_img, bg="white")
         error_imglbl.image = self.tk_student_img 

@@ -47,7 +47,7 @@ class LoginWindow(tk.Tk):
         top_title.pack(pady=(20, 10))
 
         # Image set up
-        students_img = Image.open("./GUIUniApp/Photos/students.jpg").resize((300, 200))
+        students_img = Image.open("./Photos/students.jpg").resize((300, 200))
         tk_student_img = ImageTk.PhotoImage(students_img)
         students_imglbl = tk.Label(self, image=tk_student_img, bg="#27E4F5")
         students_imglbl.image = tk_student_img

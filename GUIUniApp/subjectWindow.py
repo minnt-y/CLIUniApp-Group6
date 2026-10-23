@@ -92,7 +92,7 @@ class SubjectWindow(tk.Toplevel):
         self.enrol_table.place(relx=0.5, rely=0.5, anchor="center")
 
         # Add an image
-        view_1_img = Image.open("./GUIUniApp/Photos/view_1.jpg").resize((255, 150))
+        view_1_img = Image.open("./Photos/view_1.jpg").resize((255, 150))
         tk_view1_img = ImageTk.PhotoImage(view_1_img)
         view1_imglbl = tk.Label(self, image=tk_view1_img, bg="#27E4F5")
         view1_imglbl.image = tk_view1_img

@@ -75,14 +75,14 @@ class Dashboard(tk.Toplevel):
         dashboard_frame.place(relx=0.5, rely=0.3, anchor="center")
 
         # Dashboard Img
-        dash_img = Image.open("./GUIUniApp/Photos/study_img.jpg").resize((400, 200))
+        dash_img = Image.open("./Photos/study_img.jpg").resize((400, 200))
         tk_dash_img = ImageTk.PhotoImage(dash_img)
         dash_imglbl = tk.Label(self, image=tk_dash_img, bg="#27E4F5")
         dash_imglbl.image = tk_dash_img
         dash_imglbl.place(relx=0.5, rely=0.6, anchor="n")
 
         # Clickable img to 'Course Enrolment'
-        enrol_img = Image.open("./GUIUniApp/Photos/enrolment.jpg").resize((220, 150))
+        enrol_img = Image.open("./Photos/enrolment.jpg").resize((220, 150))
         self.tk_enrol_img = ImageTk.PhotoImage(enrol_img)
         enrol_imglbl = tk.Label(
             dashboard_frame, image=self.tk_enrol_img, bg="#27E4F5", cursor="hand2"
@@ -105,7 +105,7 @@ class Dashboard(tk.Toplevel):
         enrol_imglbl.bind("<Button-1>", lambda e: go_to_enrolment())
 
         # Clickable img to 'View Courses'
-        sub_img = Image.open("./GUIUniApp/Photos/subject.png").resize((220, 150))
+        sub_img = Image.open("./Photos/subject.png").resize((220, 150))
         self.tk_sub_img = ImageTk.PhotoImage(sub_img)
         sub_imglbl = tk.Label(
             dashboard_frame, image=self.tk_sub_img, bg="#27E4F5", cursor="hand2"
