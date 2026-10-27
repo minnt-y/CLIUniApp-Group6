@@ -14,7 +14,6 @@ class Subject:
     def generateSubjectID(self, existingIDs=None) -> str:
         while True:
             subjectID = f"{random.randint(1, 999):03d}"
-
             if subjectID not in existingIDs:
                 existingIDs.add(subjectID)
                 return subjectID
