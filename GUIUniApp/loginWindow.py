@@ -42,9 +42,8 @@ class LoginWindow(tk.Tk):
 
         # Image set up
         students_img = Image.open("./GUIUniApp/Photos/students.jpg").resize((300, 200))
-        tk_student_img = ImageTk.PhotoImage(students_img)
-        students_imglbl = tk.Label(self, image=tk_student_img, bg="#27E4F5")
-        students_imglbl.image = tk_student_img
+        self.tk_student_img = ImageTk.PhotoImage(students_img)
+        students_imglbl = tk.Label(self, image=self.tk_student_img, bg="#27E4F5")
         students_imglbl.pack(pady=10)
 
         # Box frame set up for containing all widgets in login window
@@ -65,7 +64,6 @@ class LoginWindow(tk.Tk):
         emailLbl = tk.Label(
             box_frame,
             text="Email:",
-            justify="left",
             fg="#B427F5",
             font="Helvetica 20 bold",
             bg="#27E4F5",
@@ -76,7 +74,6 @@ class LoginWindow(tk.Tk):
         passwordLbl = tk.Label(
             box_frame,
             text="Password:",
-            justify="left",
             fg="#B427F5",
             font="Helvetica 20 bold",
             bg="#27E4F5",

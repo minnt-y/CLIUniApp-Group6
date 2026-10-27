@@ -26,7 +26,6 @@ class ExceptionWindow(tk.Toplevel):
         error_img = Image.open("./GUIUniApp/Photos/error_sign.png").resize((100, 100))
         self.tk_student_img = ImageTk.PhotoImage(error_img)
         error_imglbl = tk.Label(error_box, image=self.tk_student_img, bg="white")
-        error_imglbl.image = self.tk_student_img
         error_imglbl.pack(side=tk.LEFT, padx=(0, 15))
         # Error message set up
         error_message = tk.Message(
@@ -49,8 +48,7 @@ class ExceptionWindow(tk.Toplevel):
         self.grab_set()
         # Stay focus on this window when encontering error
         self.focus_force()
-        # Not whole mainloop longer executing until the user
-        # close this window
+        # Waiting until any event is captured
         self.wait_window(self)
 
     def close(self):
