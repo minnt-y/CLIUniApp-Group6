@@ -87,7 +87,6 @@ class SubjectWindow(tk.Toplevel):
 
         # Add an image
         view_1_img = Image.open("./GUIUniApp/Photos/view_1.jpg").resize((255, 150))
-        tk_view1_img = ImageTk.PhotoImage(view_1_img)
-        view1_imglbl = tk.Label(self, image=tk_view1_img, bg="#27E4F5")
-        view1_imglbl.image = tk_view1_img
+        self.tk_view1_img = ImageTk.PhotoImage(view_1_img)
+        view1_imglbl = tk.Label(self, image=self.tk_view1_img, bg="#27E4F5")
         view1_imglbl.place(relx=0.5, rely=0.8, anchor="center")

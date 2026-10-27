@@ -70,9 +70,8 @@ class Dashboard(tk.Toplevel):
 
         # Dashboard Img
         dash_img = Image.open("./GUIUniApp/Photos/study_img.jpg").resize((400, 200))
-        tk_dash_img = ImageTk.PhotoImage(dash_img)
-        dash_imglbl = tk.Label(self, image=tk_dash_img, bg="#27E4F5")
-        dash_imglbl.image = tk_dash_img
+        self.tk_dash_img = ImageTk.PhotoImage(dash_img)
+        dash_imglbl = tk.Label(self, image=self.tk_dash_img, bg="#27E4F5")
         dash_imglbl.place(relx=0.5, rely=0.6, anchor="n")
 
         # Clickable img to 'Course Enrolment'
