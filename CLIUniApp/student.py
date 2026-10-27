@@ -42,14 +42,14 @@ class Student:
     def getPassword(self) -> str:
         return self._password
 
-    def viewEnrolmentList(self) -> list:
-        return self._enrolledSubjects.copy()
-
     def enrolSubject(self, subject) -> bool:
         if len(self._enrolledSubjects) >= 4:
             return False
         self._enrolledSubjects.append(subject)
         return True
+
+    def viewEnrolmentList(self) -> list:
+        return self._enrolledSubjects.copy()
 
     def removeSubject(self, subjectID: str) -> bool:
         for subject in self._enrolledSubjects:
