@@ -1,2 +1,38 @@
 For GUIUniApp, go to GUIEntry.py under the GUIUniApp folder, and click run button on top right
 (or open a terminal and run this file with the command `python ./GUIUniApp/GUIEntry.py`)
+
+For CLIUniApp:
+1. Run the Application
+- Open your terminal or command prompt.
+- Navigate to the project directory with the command 'cd':
+- Launch the main system entry point:
+    python ./CLIUniApp/UniSystem.py
+
+2. How to Use the CLI App
+Upon launching UniSystem.py, you will see the main menu prompt:
+"University System: (A)dmin, (S)tudent, or X :"
+
+A. Admin Subsystem (Press 'A'):
+   - 'c': Clear all student records in the database.
+   - 'g': Display grade groupings (HD, D, C, P, Z) based on average marks.
+   - 'p': Display PASS/FAIL partition based on average marks (Pass threshold: 50).
+   - 'r': Remove a student account by entering their Student ID.
+   - 's': List all registered students and their details.
+   - 'x': Exit back to the main menu.
+
+B. Student Subsystem (Press 'S'):
+   - Enter 'l' to Login or 'r' to Register.
+   - Password Rules: Must start with an uppercase letter, contain at least 5 letters, and end with at least 3 digits (e.g., Hello123).
+   - Email Rules: Must end with '@university.com'.
+   - Enrolment: Max 4 subjects per student. Unique 3-digit Subject IDs and marks (25-100) are auto-generated.
+
+4. Testing the Application
+- Basic Flow Test:
+    1. Start UniSystem.py.
+    2. Go to Student Subsystem ('S') -> Register ('r') a new student.
+    3. Log in ('l') with the new account and enrol in subjects.
+    4. Go to Admin Subsystem ('A') -> List students ('s') or check grade groupings ('g').
+- Data Persistence Test:
+    1. Register a student and enrol in subjects.
+    2. Exit the app completely ('X').
+    3. Relaunch UniSystem.py and verify that the student data persists via students.data.
