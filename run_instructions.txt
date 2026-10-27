@@ -26,7 +26,7 @@ B. Student Subsystem (Press 'S'):
    - Email Rules: Must end with '@university.com'.
    - Enrolment: Max 4 subjects per student. Unique 3-digit Subject IDs and marks (25-100) are auto-generated.
 
-4. Testing the Application
+3. Testing the Application
 - Basic Flow Test:
     1. Start UniSystem.py.
     2. Go to Student Subsystem ('S') -> Register ('r') a new student.
