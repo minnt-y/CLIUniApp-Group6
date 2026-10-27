@@ -12,7 +12,6 @@ class Subject:
         self._grade = self.calculateGrade(self._mark)
 
     def generateSubjectID(self, existingIDs=None) -> str:
-        existingIDs = existingIDs or set()
         while True:
             subjectID = f"{random.randint(1, 999):03d}"
 

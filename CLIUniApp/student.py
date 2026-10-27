@@ -21,7 +21,6 @@ class Student:
         self._enrolledSubjects = []
 
     def generateStudentID(self, existingIDs: set) -> str:
-        existingIDs = existingIDs or set()
         while True:
             studentID = f"{random.randint(1, 999999):06d}"
             if studentID not in existingIDs:
