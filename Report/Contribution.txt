@@ -1,2 +1,3 @@
 Yilun Fan, 14286266, GUI, 25%
 Siyuan Long, 14780579, adminCLl, studentManager(admin), 25%
+Qiuliang, 26143204, studentCLl, studentManager(student), 25%
