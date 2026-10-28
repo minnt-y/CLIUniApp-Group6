@@ -91,7 +91,7 @@ class LoginWindow(tk.Tk):
         self.pwdField.grid(column=1, row=1, padx=5, pady=5, sticky=tk.N)
 
         # Quit button set up
-        quitBtn = tk.Button(box_frame, text="Quit", command=lambda: self.quit())
+        quitBtn = tk.Button(box_frame, text="Quit", command=lambda: self.destroy())
         quitBtn.grid(column=1, row=3, sticky=tk.W, padx=5, pady=5)
 
         # Login button set up
